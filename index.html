@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>snakeGame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-overlay"></div>
+
+    <div id="welcomePage" class="page">
+        <h1 class="shimmer">SNAKE EMUG</h1>
+        <p class="tagline">Permainan Ular ya, bukan ular dalam celana, apalagi ularnya sering dimainin! 🐍</p>
+        <button class="btn" onclick="showPage('namePage')">MASUK ⚡</button>
+    </div>
+
+    <div id="namePage" class="page" style="display:none;">
+    <h2 style="font-family: 'Orbitron';">IDENTITAS</h2>
+    
+    <input type="text" id="playerName" placeholder="NAMA JAGOAN" maxlength="10" 
+           style="padding: 12px; border-radius: 8px; border: 1px solid var(--primary); 
+           background: #000; color: #fff; width: 80%; text-align: center; margin: 15px 0;">
+    
+    <button class="btn" onclick="initGame()">MULAI MISI</button>
+    
+    <div id="leaderboardBox" style="margin-top: 15px; font-size: 11px; text-align: left; opacity: 0.8;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; border-bottom: 1px solid rgba(0,242,255,0.2); padding-bottom: 5px;">
+            <p style="margin: 0; color: var(--primary); font-weight: bold;">🏆 TOP SKOR:</p>
+            
+            <span onclick="clearLeaderboard()" style="cursor: pointer; color: #ff0055; font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                [ HAPUS ]
+            </span>
+        </div>
+        <div id="leaderList"></div>
+    </div>
+</div>
+
+    <div id="gameArea">
+    <div style="display: flex; justify-content: space-between; width: 95%; max-width: 380px; font-family: 'Orbitron'; color: var(--primary); margin-bottom: 8px;">
+        <div style="font-size: 14px;">SCORE: <span id="scoreVal">0</span></div>
+        <div id="pauseBtn" onclick="togglePause()" style="cursor: pointer; background: rgba(0,242,255,0.1); padding: 4px 12px; border-radius: 8px; border: 1px solid var(--primary); font-size: 11px; font-weight: bold;">PAUSE ||</div>
+    </div>
+    
+    <canvas id="snakeGame"></canvas>
+
+    <div class="nav-container">
+        <div class="btn-nav up" onclick="changeDir('UP')">▲</div>
+        <div class="btn-nav left" onclick="changeDir('LEFT')">◀</div>
+        <div class="btn-nav down" onclick="changeDir('DOWN')">▼</div>
+        <div class="btn-nav right" onclick="changeDir('RIGHT')">▶</div>
+    </div>
+</div>
+
+    <div id="gameOverPage" class="page" style="display:none;">
+    <h2 style="color: var(--danger); font-family: 'Orbitron'; margin-bottom: 5px;">MISSION FAILED</h2>
+    
+    <p id="finalScoreMsg" style="font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #fff;"></p>
+    
+    <button class="btn" onclick="location.reload()">MAIN LAGI ⚡</button>
+
+    <div style="margin-top: 25px; padding-top: 15px; border-top: 1px dashed rgba(0,242,255,0.3); text-align: left; font-size: 11px;">
+        <p style="margin: 0 0 10px 0; color: var(--primary); font-family: 'Orbitron'; text-align: center;">🏆 PAPAN SKOR TERBAIK</p>
+        <div id="leaderList" style="opacity: 0.8;">
+            </div>
+    </div>
+</div>
+    <footer><p>&copy; Copyright 2025 by <b>STNK</b></p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
